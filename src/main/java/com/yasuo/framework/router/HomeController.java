@@ -2,16 +2,16 @@ package com.yasuo.framework.router;
 
 import com.yasuo.framework.entity.UserDO;
 import com.yasuo.framework.service.UserService;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-@AllArgsConstructor
 public class HomeController {
 
-    private final UserService userService;
+    @Autowired
+    private  UserService userService;
 
     @GetMapping({"/", "/index", "/home"})
     public String root(){

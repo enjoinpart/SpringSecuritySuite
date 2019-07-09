@@ -3,13 +3,11 @@ package com.yasuo.framework.service.impl;
 import com.yasuo.framework.entity.UserDO;
 import com.yasuo.framework.repository.UserRepository;
 import com.yasuo.framework.service.UserService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 @Service
 @Primary
-@Slf4j
 public class BaseUserService implements UserService {
 
     private final UserRepository userRepository;
