@@ -1,0 +1,27 @@
+﻿异常处理
+
+分页
+
+tkmapper增删改插
+
+不要后台路由,改成json传数据
+
+环境换着搭成生产环境开发环境,用maven profiles 跟Springboot带的都行,maven的能用idea直接切换不用修改代码(maven profiles)
+
+发布时把Springboot项目注册成linux服务(没有Linux 用docker发布)
+
+//搭项目用git管理要加上gitignore文件，有些文件不需要上传到服务器上(配置过滤)
+
+加上swagger的api接口
+
+springsecurity密码数据库化
+
+把Springsecurity换成ajax登陆
+
+创建init分支(环境一般都是dev prod): 把master分支的权限收回来 建另外的分支开发 没问题再merge到主分枝上 保护项目
+
+前端使用vue+bootstrap渲染页面
+
+或者使用其他风格的UI框架*  
+推荐框架 https://cloud.tencent.com/developer/news/327165 
+
