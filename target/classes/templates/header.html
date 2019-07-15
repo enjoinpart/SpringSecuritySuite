@@ -16,7 +16,7 @@
                     <li>
                         <a href="/">首页</a>
                     </li>
-                    <li>
+                  <!--  <li>
                         <a href="https://anoyi.com/" target="_blank">博客</a>
                     </li>
                     <li>
@@ -27,10 +27,11 @@
                     </li>
                     <li>
                         <a href="http://spring4all.com" target="_blank">社区</a>
-                    </li>
+                    </li>-->
                 </ul>
                 <div class="navbar-form navbar-right">
                     <a class="btn btn-danger" th:href="@{/user}" th:if="${#httpServletRequest.remoteUser}">个人中心</a>
+                    <a class="btn btn-info" th:href="@{/register}" th:unless="${#httpServletRequest.remoteUser}">注册</a>
                     <a class="btn btn-success" th:href="@{/login}" th:unless="${#httpServletRequest.remoteUser}">登录</a>
                 </div>
             </div>
