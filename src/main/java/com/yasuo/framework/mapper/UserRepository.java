@@ -1,4 +1,4 @@
-package com.yasuo.framework.repository;
+package com.yasuo.framework.mapper;
 
 import com.yasuo.framework.entity.UserDO;
 import org.springframework.data.repository.CrudRepository;

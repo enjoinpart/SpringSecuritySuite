@@ -1,0 +1,18 @@
+
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: prod
+  thymeleaf:
+    cache: false
+  datasource:
+    url: jdbc:mysql://106.13.71.23:3306/yasuo_springsecurity?useUnicode=true&characterEncoding=utf8mb4
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password: 106.13.71.23
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5Dialect

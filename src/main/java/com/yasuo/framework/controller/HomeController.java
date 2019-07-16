@@ -1,5 +1,6 @@
-package com.yasuo.framework.router;
+package com.yasuo.framework.controller;
 
+import com.yasuo.framework.base.controller.BaseController;
 import com.yasuo.framework.entity.UserDO;
 import com.yasuo.framework.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class HomeController {
+public class HomeController  extends BaseController {
 
     @Autowired
     private  UserService userService;
