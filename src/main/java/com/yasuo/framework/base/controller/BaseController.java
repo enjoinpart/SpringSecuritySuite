@@ -19,4 +19,20 @@ public class BaseController {
         return  APIResponse.returnFail(exception.getMessage());
     }
 
+    public APIResponse success() {
+        return APIResponse.returnSuccess();
+    }
+
+    public <T> APIResponse success(T data) {
+        return APIResponse.returnSuccess(data);
+    }
+
+    public APIResponse failure(String msg) {
+        return APIResponse.returnFail(msg);
+    }
+
+    public APIResponse failure(String msg, int code) {
+        return APIResponse.returnFail(msg, code);
+    }
+
 }
