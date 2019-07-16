@@ -1,4 +1,14 @@
 ﻿#20190715
 1.删掉多余文件<.idea文件夹><springsuite.iml><target文件夹> 保持git文件洁净.
     注:本地.idea文件夹可以删，不影响项目构建。springsuite.iml不可以删掉.建议备份
-2.创建init分支
+2.创建init分支:
+    步骤记录
+           1.github上点击create branch,命名为init
+           2.本地环境创建文件夹 SpringSecuritySuite-init
+           3.命令行进入这个文件夹,git init
+           4.git remote add origin  https://github.com/enjoinpart/SpringSecuritySuite.git
+           5.git pull origin init:master(此步骤默认创建一个本地master,指向远程分支init)
+           6.git push -u origin master:init(这个步骤会出现github的登录弹出窗页面,输入你的username,password)
+
+
+
