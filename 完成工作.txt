@@ -1,2 +1,4 @@
-#20190715
-删掉多余文件
+﻿#20190715
+1.删掉多余文件<.idea文件夹><springsuite.iml><target文件夹> 保持git文件洁净.
+    注:本地.idea文件夹可以删，不影响项目构建。springsuite.iml不可以删掉.建议备份
+2.创建init分支
