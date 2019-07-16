@@ -1,8 +1,10 @@
 package com.yasuo.framework.base.controller;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.io.Serializable;
+
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 
 /**
  * @author ：liming
@@ -15,10 +17,10 @@ public class APIResponse<T> implements Serializable {
 
     private final String ver = "1.0";
     private boolean ret;
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(NON_NULL)
     private String msg;
     private int code;
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(NON_NULL)
     private T data;
 
     public APIResponse() {
