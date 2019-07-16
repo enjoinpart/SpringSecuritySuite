@@ -1,5 +1,6 @@
 package com.yasuo.framework.base.controller;
 
+import com.yasuo.framework.base.exception.ServiceException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
@@ -12,7 +13,7 @@ import org.springframework.web.context.request.WebRequest;
 @Slf4j
 public class BaseController {
 
-    @ExceptionHandler()
+    @ExceptionHandler(ServiceException.class)
     public APIResponse systemExceptionHandler(Exception exception, WebRequest request){
         log.error("systemException", exception);
         return  APIResponse.returnFail(exception.getMessage());
