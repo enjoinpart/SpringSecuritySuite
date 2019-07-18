@@ -1,17 +1,46 @@
 
+
 server:
   port: 8080
 
 spring:
   profiles:
-    active: dev
+    active: beta
   thymeleaf:
     cache: false
+#datasource
   datasource:
-    url: jdbc:mysql://106.13.71.23:3306/yasuo_springsecurity?useUnicode=true&characterEncoding=utf8mb4
-    driver-class-name: org.mariadb.jdbc.Driver
+    driverClass: org.mariadb.jdbc.Driver
+    url: jdbc:mysql://106.13.71.23:3306/yasuo_springsecurity?useUnicode=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&useSSL=false
     username: root
     password: 106.13.71.23
+    type: com.alibaba.druid.pool.DruidDataSource
+    filters: stat
+    maxActive: 1000
+    initialSize: 100
+    maxWait: 60000
+    minIdle: 500
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+
+
+# MyBatis
+mybatis:
+  typeAliasesPackage: com.github.edu.entity
+  mapperLocations: classpath:/mapper/*.xml
+
+  configuration:
+    mapUnderscoreToCamelCase: true
+  notEmpty: false
+  IDENTITY: MYSQL
+
+
   jpa:
     hibernate:
       ddl-auto: update

@@ -3,8 +3,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.yasuo.springsuite</groupId>
-    <artifactId>springsuite</artifactId>
+    <groupId>com.guithub.edu</groupId>
+    <artifactId>edu</artifactId>
     <version>1.0-SNAPSHOT</version>
 
 
@@ -15,6 +15,8 @@
         <guava.version>28.0-jre</guava.version>
         <mariadb.version>2.0.2</mariadb.version>
         <lombok.version>1.18.8</lombok.version>
+        <durid.version>1.1.18</durid.version>
+        <mysql.version>8.0.16</mysql.version>
     </properties>
 
     <parent>
@@ -53,6 +55,25 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
+
+        <!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+
+
+
         <!-- 导入log4j2依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -82,11 +103,22 @@
         </dependency>
 
 
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
 
+
+        <!-- https://mvnrepository.com/artifact/com.alibaba/druid-spring-boot-starter -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>${durid.version}</version>
+        </dependency>
 
     </dependencies>
-
-
 
 
 
