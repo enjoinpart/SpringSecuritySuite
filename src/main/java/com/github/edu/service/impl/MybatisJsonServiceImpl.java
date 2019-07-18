@@ -24,6 +24,12 @@ public class MybatisJsonServiceImpl implements MybatisJsonService {
 
     @Override
     public MybatisJson getJson(Long id) {
-        return mybatisJsonMapper.selectByPrimaryKey(id);
+        MybatisJson mybatisJson=mybatisJsonMapper.getById(id);
+        return  mybatisJson;
+
+
+//        return mybatisJsonMapper.selectByPrimaryKey(id);
     }
+
+
 }

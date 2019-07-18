@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.edu.mappers.MybatisJsonMapper">
+
+
+
+    <resultMap id="mybatisJsonMap" type="mybatisJson">
+    <id property="id" column="id"/>
+    <result property="msg" column="msg"/>
+    <result property="info" column="info" typeHandler="com.github.edu.config.handles.JsonHandler"/>
+    </resultMap>
+    <select id="getById"  resultMap="mybatisJsonMap">
+        select * from mybatis_json where id=#{id}
+    </select>
+
+
+
+
+</mapper>
+

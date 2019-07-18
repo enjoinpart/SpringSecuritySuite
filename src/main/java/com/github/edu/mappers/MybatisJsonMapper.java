@@ -12,4 +12,7 @@ import tk.mybatis.mapper.common.Mapper;
  */
 @Repository
 public interface MybatisJsonMapper extends Mapper<MybatisJson> {
+
+
+    MybatisJson getById(Long id);
 }

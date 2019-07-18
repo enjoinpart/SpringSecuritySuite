@@ -11,5 +11,7 @@
     <typeAliases>
         <package name="com.github.edu.entity"/>
     </typeAliases>
-
+    <typeHandlers>
+        <typeHandler  handler="com.github.edu.config.handles.JsonHandler"/>
+    </typeHandlers>
 </configuration>

@@ -34,10 +34,10 @@ spring:
 mybatis:
   typeAliasesPackage: com.github.edu.entity
   mapperLocations: classpath:/mapper/*.xml
-
   configuration:
     mapUnderscoreToCamelCase: true
-  notEmpty: false
+  notEmpty: true
+
   IDENTITY: MYSQL
 
 

@@ -1,4 +1,4 @@
-package com.github.edu.security;
+package com.github.edu.base.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationProvider;

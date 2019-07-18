@@ -1,16 +1,19 @@
 package com.github.edu.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.edu.base.controller.APIResponse;
 import com.github.edu.base.controller.BaseController;
 import com.github.edu.entity.MybatisJson;
 import com.github.edu.service.MybatisJsonService;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableTable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.Immutable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 
 /**
  * @author ：liming
@@ -20,7 +23,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/json/")
 public class MybatisJsonController extends BaseController {
-
 
     private MybatisJsonService mybatisJsonService;
 
@@ -32,7 +34,9 @@ public class MybatisJsonController extends BaseController {
     @GetMapping("getJson/{id}")
     public APIResponse getJson(@PathVariable  Long id){
        MybatisJson mybatisJson= mybatisJsonService.getJson(id);
-       return  success(mybatisJson);
+        JSONObject jsonInfo = mybatisJson.getInfo();
+        String address = jsonInfo.getString("address");
+       return  success(ImmutableMap.of("jsonInfo",jsonInfo,"address",address));
     }
 
 }
