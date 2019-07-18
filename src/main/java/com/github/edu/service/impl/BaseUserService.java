@@ -26,7 +26,7 @@ public class BaseUserService implements UserService {
             throw new RuntimeException("用户名已存在！");
         }
       userDO.setPassword(new BCryptPasswordEncoder().encode(userDO.getPassword()));
-       userRepository.save(userDO);
+       userRepository.insertSelective(userDO);
     }
 
     @Override
