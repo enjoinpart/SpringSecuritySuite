@@ -97,4 +97,6 @@ hs_err_pid*
 #app logs
 *.log
 
+log/logs/*
+
 **/CElasticsearchDataProvider.java
