@@ -1,4 +1,4 @@
-package com.github.edu.config;
+package com.github.edu.base.security;
 
 import com.github.edu.base.security.CustomAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
