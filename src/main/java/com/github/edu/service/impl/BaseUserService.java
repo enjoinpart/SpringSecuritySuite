@@ -1,7 +1,7 @@
 package com.github.edu.service.impl;
 
 import com.github.edu.entity.UserDO;
-import com.github.edu.mappers.UserRepository;
+import com.github.edu.mappers.UserMapper;
 import com.github.edu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -12,11 +12,11 @@ import org.springframework.stereotype.Service;
 @Primary
 public class BaseUserService implements UserService {
 
-    private final UserRepository userRepository;
+    private final UserMapper UserMapper;
 
     @Autowired
-    public BaseUserService(UserRepository userRepository){
-        this.userRepository = userRepository;
+    public BaseUserService(UserMapper UserMapper){
+        this.UserMapper = UserMapper;
     }
 
     @Override
@@ -26,19 +26,19 @@ public class BaseUserService implements UserService {
             throw new RuntimeException("用户名已存在！");
         }
       userDO.setPassword(new BCryptPasswordEncoder().encode(userDO.getPassword()));
-       userRepository.insertSelective(userDO);
+        UserMapper.insertSelective(userDO);
     }
 
     @Override
     public UserDO getByUsername(String username) {
-        return userRepository.findByUsername(username);
+        return UserMapper.findByUsername(username);
     }
 
     /**
      * 判断用户是否存在
      */
     private boolean exist(String username){
-        UserDO userDO = userRepository.findByUsername(username);
+        UserDO userDO = UserMapper.findByUsername(username);
         return (userDO != null);
     }
 
