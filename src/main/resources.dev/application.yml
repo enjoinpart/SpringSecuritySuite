@@ -5,7 +5,7 @@ server:
 
 spring:
   profiles:
-    active: beta
+    active: dev
   thymeleaf:
     cache: false
 #datasource
@@ -28,6 +28,21 @@ spring:
     testOnReturn: false
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
+
+
+
+  redis:
+   database: 0
+   host: 127.0.0.1
+   password: 123456
+   pool:
+     max-active: 8
+     max-idle: 8
+     max-wait: -1
+     min-idle: 0
+   port: 6379
+   timeout: 5000
+
 
 
 # MyBatis

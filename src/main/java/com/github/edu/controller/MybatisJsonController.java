@@ -6,9 +6,7 @@ import com.github.edu.base.controller.BaseController;
 import com.github.edu.entity.MybatisJson;
 import com.github.edu.service.MybatisJsonService;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableTable;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.Immutable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class MybatisJsonController extends BaseController {
 
     private MybatisJsonService mybatisJsonService;
+
 
     @Autowired
     public MybatisJsonController(MybatisJsonService mybatisJsonService) {
