@@ -1,5 +1,6 @@
 package com.github.edu.service.impl;
 
+import com.github.edu.base.exception.ServiceException;
 import com.github.edu.entity.UserDO;
 import com.github.edu.mappers.UserMapper;
 import com.github.edu.service.UserService;
@@ -23,7 +24,7 @@ public class BaseUserService implements UserService {
     public void insert(UserDO userDO) {
         String username = userDO.getUsername();
         if (exist(username)){
-            throw new RuntimeException("用户名已存在！");
+            throw new ServiceException(-1,"用户名已存在！");
         }
       userDO.setPassword(new BCryptPasswordEncoder().encode(userDO.getPassword()));
         UserMapper.insertSelective(userDO);

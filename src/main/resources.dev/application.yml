@@ -6,7 +6,11 @@ server:
 spring:
   profiles:
     active: dev
+
+  #thymeleaf
   thymeleaf:
+    prefix:
+      classpath: /templates
     cache: false
 #datasource
   datasource:
@@ -45,6 +49,7 @@ spring:
 
 
 
+
 # MyBatis
 mybatis:
   typeAliasesPackage: com.github.edu.entity
@@ -54,6 +59,7 @@ mybatis:
   notEmpty: true
 
   IDENTITY: MYSQL
+
 
 
   jpa:
