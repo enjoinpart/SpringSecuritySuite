@@ -1,63 +1,110 @@
+<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>登录 | SpringForAll - Spring Security</title>
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
-</head>
+    <title>登录</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    
+    <!-- jquery -->
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}" />
+    <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+    <!-- jquery-validator -->
+    <script type="text/javascript" th:src="@{/jquery-validation/jquery.validate.min.js}"></script>
+    <script type="text/javascript" th:src="@{/jquery-validation/localization/messages_zh.min.js}"></script>
+    <!-- layer -->
+    <script type="text/javascript" th:src="@{/layer/layer.js}"></script>
+    <!-- md5.js -->
+    <script type="text/javascript" th:src="@{/js/md5.min.js}"></script>
+    <!-- common.js -->
+    <script type="text/javascript" th:src="@{/js/common.js}"></script>
 
-<body style="background-color: #f1f1f1; padding-bottom: 0">
+	<style type="text/css">
+		html,body{
+			height:100%;
+			width:100%;
+		}
+		body{
+			background:url('/img/bg.jpg') no-repeat;
+			background-size:100% 100%;
+			padding-top:100px;
+		}
+	</style>
 
-<div th:insert="~{header :: nav}"></div>
+    </head>
+<body>
 
-<div class="container" style="margin-top: 60px">
+<form name="loginForm" id="loginForm" method="post"  style="width:30%; margin:0 auto;">
 
-    <div class="row" style="margin-top: 100px">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><span class="glyphicon glyphicon-console"></span> Login</h3>
-                </div>
-                <div class="panel-body">
-                    <form th:action="@{/login}" method="post">
-                        <div class="form-group" style="margin-top: 30px">
-                            <div class="input-group col-md-6 col-md-offset-3">
-                                <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-                                <input type="text" class="form-control" name="username" id="username" placeholder="账号">
-                            </div>
-                        </div>
-                        <div class="form-group ">
-                            <div class="input-group col-md-6 col-md-offset-3">
-                                <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
-                                <input type="password" class="form-control" name="password" id="password"
-                                       placeholder="密码">
-                            </div>
-                        </div>
-                        <br>
-                        <div th:if="${param.error}">
-                            <p style="text-align: center" class="text-danger">登录失败，账号或密码错误!</p>
-                        </div>
-                        <div th:if="${result}">
-                            <p style="text-align: center" class="text-success" th:text="${result}"></p>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group col-md-6 col-md-offset-3 col-xs-12 ">
-                                <button type="submit" class="btn btn-primary btn-block">登录</button>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group col-md-6 col-md-offset-3" style="text-align: center">
-                                <a href="/register">创建账号</a> | 忘记密码?
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+	<h2 style="text-align:center; margin-bottom: 20px">用户登录</h2>
+	
+	<div class="form-group">
+       	<div class="row">
+	       	<label class="form-label col-md-4">请输入手机号码</label>
+	        <div class="col-md-8">
+	        	<input id="mobile" name = "mobile" class="form-control" type="text" placeholder="手机号码" required="true"  minlength="11" maxlength="11" />
+	    	</div>
+	    	<div class="col-md-1">
+	    	</div>
+    	</div>
     </div>
-
-</div>
-
+    
+    <div class="form-group">
+     		<div class="row">
+		        <label class="form-label col-md-4">请输入密码</label>
+		        <div class="col-md-8">
+		        	<input id="password" name="password" class="form-control" type="password"  placeholder="密码" required="true" minlength="6" maxlength="16" />
+	       		</div>
+      		</div>
+	</div>
+	
+	<div class="row" style="margin-top:40px;">
+		     	<div class="col-md-6">
+	       	 		<button class="btn btn-primary btn-block" type="reset" onclick="reset()">重置</button>
+	       	 	</div>
+	       	 	<div class="col-md-6">
+	       	 		<button class="btn btn-primary btn-block" type="submit" onclick="login()">登录</button>
+	       	 	</div>
+	 </div>
+	 
+</form>
 </body>
-
+<script>
+function login(){
+	$("#loginForm").validate({
+        submitHandler:function(form){
+             doLogin();
+        }    
+    });
+}
+function doLogin(){
+	g_showLoading();
+	
+	var inputPass = $("#password").val();
+	var salt = g_passsword_salt;
+	var str = ""+salt.charAt(0)+salt.charAt(2) + inputPass +salt.charAt(5) + salt.charAt(4);
+	var password = md5(str);
+	
+	$.ajax({
+		url: "/login/do_login",
+	    type: "POST",
+	    data:{
+	    	mobile:$("#mobile").val(),
+	    	password: password
+	    },
+	    success:function(data){
+	    	layer.closeAll();
+	    	if(data.code == 0){
+	    		layer.msg("成功");
+	    		window.location.href="/goods/to_list";
+	    	}else{
+	    		layer.msg(data.msg);
+	    	}
+	    },
+	    error:function(){
+	    	layer.closeAll();
+	    }
+	});
+}
+</script>
 </html>

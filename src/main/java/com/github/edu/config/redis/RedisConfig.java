@@ -1,13 +1,14 @@
-package com.github.edu.config;
+package com.github.edu.config.redis;
 
-import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 
 
 /**
@@ -18,6 +19,9 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
 public class RedisConfig   {
+
+    @Autowired
+    private RedisPorperties redisPorperties;
 
     @Bean
     @SuppressWarnings("all")
@@ -35,6 +39,15 @@ public class RedisConfig   {
     }
 
 
+    @Bean
+    public JedisPool JedisPoolFactory() {
+        JedisPoolConfig poolConfig = new JedisPoolConfig();
+        poolConfig.setMaxTotal(redisPorperties.getPoolMaxTotal());
+        poolConfig.setMaxWaitMillis(redisPorperties.getPoolMaxWait() * 1000);
+        JedisPool jp = new JedisPool(poolConfig, redisPorperties.getHost(), redisPorperties.getPort(),
+                redisPorperties.getTimeout()*1000, redisPorperties.getPassword(), 0);
+        return jp;
+    }
 
 
 
