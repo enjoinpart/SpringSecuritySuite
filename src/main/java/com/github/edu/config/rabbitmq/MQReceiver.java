@@ -19,4 +19,18 @@ public class MQReceiver {
 
     }
 
+
+    @RabbitListener(queues = MQConfig.TOPIC_QUEUE1)
+    public void receiveTopic1(String msg){
+        log.info("receive msg  topic=="+msg);
+
+    }
+
+    @RabbitListener(queues = MQConfig.TOPIC_QUEUE2)
+    public void receiveTopic2(String msg){
+        log.info("receive msg  topic2=="+msg);
+
+    }
+
+
 }
